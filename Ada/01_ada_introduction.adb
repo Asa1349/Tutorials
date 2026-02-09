@@ -30,22 +30,22 @@ with Ada.Text_IO; -- Import the standard package for Input/Output
 procedure Ada_Introduction is -- The procedure must have the same name as the file itself.
    -- DECLARATION ZONE: Variables must be defined before the 'begin' keyword.
    -- Syntax: Name : Type;
-   FirstNumber  : Integer;
-   SecondNumber : Integer;
+   First_Number  : Integer;
+   Second_Number : Integer;
    Result       : Integer;
 
 begin
    -- User Input 1
    Ada.Text_IO.Put_Line ("First number: "); 
    -- 'Value is an attribute that converts a String (from Get_Line) to an Integer.
-   FirstNumber := Integer'Value (Ada.Text_IO.Get_Line);
+   First_Number := Integer'Value (Ada.Text_IO.Get_Line);
 
    -- User Input 2
    Ada.Text_IO.Put_Line ("Second number: ");
-   SecondNumber := Integer'Value (Ada.Text_IO.Get_Line);
+   Second_Number := Integer'Value (Ada.Text_IO.Get_Line);
 
    -- Calculation
-   Result := FirstNumber + SecondNumber;
+   Result := First_Number + Second_Number;
 
    -- CONTROL STRUCTURE: if-elsif-else
    -- 'Image is an attribute that converts a numeric value back into a String.
@@ -63,6 +63,12 @@ end Ada_Introduction;
 
 -------------------------------------------------------------------------------
 -- ADA CONCEPTS: STRONG TYPING & RANGES
+--  Ada is a "Strongly Typed" language. 
+--  You cannot mix Integer and Float in calculations without explicit conversion.
+--
+--  - Valid:   Float(10) * 2.5
+--  - Invalid: 10 * 2.5 (Compiler Error!)
+--  - Division: 5 / 2 is 2 (Integer) | 5.0 / 2.0 is 2.5 (Float)
 -------------------------------------------------------------------------------
 with Ada.Text_IO;
 
@@ -97,6 +103,35 @@ end Ada_Introduction;
 
 
 -------------------------------------------------------------------------------
+-- SEMANTIC SAFETY: Miles vs. Kilometers
+-- Even though both use the same numeric representation (Float),
+-- Ada prevents you from accidentally mixing them up.
+-------------------------------------------------------------------------------
+
+procedure Navigation_Example is
+   -- Define distinct types for different units
+   type Miles      is new Float;
+   type Kilometers is new Float;
+
+   Distance_US : Miles      := 10.0;
+   Distance_EU : Kilometers := 16.0;
+   
+   Total_Distance : Kilometers;
+begin
+   -- 1. COMPILER ERROR:
+   Total_Distance := Distance_US + Distance_EU;
+   -- Ada says: "invalid operand types for operator "+""
+   -- You cannot add Miles to Kilometers!
+
+   -- 2. CORRECT WAY: Explicit Conversion and Calculation
+   -- You must consciously convert the value:
+   Total_Distance := Distance_EU + Kilometers(Distance_US * 1.609);
+   
+end Navigation_Example;
+
+
+
+-------------------------------------------------------------------------------
 -- ADA BEST PRACTICE: NUMERIC I/O
 -- This version uses specialized packages for numeric input and output.
 --
@@ -109,7 +144,7 @@ end Ada_Introduction;
 with Ada.Text_IO;
 with Ada.Integer_Text_IO; -- Specialized package for Integer I/O
 
-procedure Ada_Introduction is 
+procedure Numeric_IO is 
    -- Renaming packages is a common best practice to keep code readable 
    -- while avoiding name collisions from global 'use' clauses.
    package TIO renames Ada.Text_IO;
@@ -148,4 +183,4 @@ begin
       TIO.Put_Line ("Classification: The result is negative.");
    end if;
 
-end Ada_Introduction;
+end Numeric_IO;
