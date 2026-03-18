@@ -12,7 +12,7 @@
 -------------------------------------------------------------------------------
 
 First_Variable : Integer := 7;
-Hello_World_Statement: String :-= "Hello World!"
+Hello_World_Statement: String := "Hello World!";
 
 
 -------------------------------------------------------------------------------
