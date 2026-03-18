@@ -58,24 +58,6 @@ end Temperature_Monitor;
 -- CASE STATEMENTS: THE RULES OF PRECISION
 -- Unlike 'if-elsif', a 'case' statement in Ada is strictly checked by the 
 -- compiler for coverage and overlap.
---
--- 1. DISCRETE TYPES ONLY
---    Case statements only work with discrete types: Integers, Characters, 
---    and Enumerations. You CANNOT use 'case' for Floating Point numbers.
---
--- 2. FULL COVERAGE (Total Exhaustiveness)
---    The compiler ensures that EVERY possible value of the type is handled.
---    If you forget a single number or value, the code will not compile.
---    Use 'when others =>' as a catch-all if you don't list every value.
---
--- 3. NO OVERLAP
---    Values or ranges cannot overlap. Each input must have exactly one 
---    matching branch. This prevents ambiguous logic.
---
--- 4. RANGES AND CHOICES
---    - Use '..' to define a range (e.g., 1 .. 10).
---    - Use '|' to separate multiple individual choices (e.g., 1 | 3 | 5).
---    - Use attributes like 'First' and 'Last' to cover extremes.
 -------------------------------------------------------------------------------
 
 -- Example from above with case instead of if-statements
@@ -119,6 +101,26 @@ begin
    end case;
 end Case_Study;
 
+
+-- 1. DISCRETE TYPES ONLY
+--    Case statements only work with discrete types: Integers, Characters, 
+--    and Enumerations. You CANNOT use 'case' for Floating Point numbers.
+--
+-- 2. FULL COVERAGE (Total Exhaustiveness)
+--    The compiler ensures that EVERY possible value of the type is handled.
+--    If you forget a single number or value, the code will not compile.
+--    Use 'when others =>' as a catch-all if you don't list every value.
+--
+-- 3. NO OVERLAP
+--    Values or ranges cannot overlap. Each input must have exactly one 
+--    matching branch. This prevents ambiguous logic.
+--
+-- 4. RANGES AND CHOICES
+--    - Use '..' to define a range (e.g., 1 .. 10).
+--    - Use '|' to separate multiple individual choices (e.g., 1 | 3 | 5).
+--    - Use attributes like 'First' and 'Last' to cover extremes.
+
+
 -------------------------------------------------------------------------------
 -- FOR LOOP
 -- A for loop allows iteration through a discrete range.
@@ -138,6 +140,7 @@ begin
       Ada.Text_IO_Put_Line ("System start in" & Integer'Image(Countdown));
    end loop;
 end Measurement_Loop;
+
 
 -- 1. AUTOMATIC DECLARATION 
 --    Unlike in other languages, you don't write 'int i'. 
@@ -186,6 +189,7 @@ begin
    Ada.Text_IO.Put_Line ("Target reached. Loop terminated.");
 end Bare_Loop_Example;
 
+
 -- 1. DECLARATION
 --    Variables such as Sensor_Value must be declared between 'is' and 'begin'. 
 --    In Ada, variables must never be declared in the middle of executable code (after 'begin').
@@ -220,6 +224,7 @@ end loop;
 
    Ada.Text_IO_Put_Line("Tank is now empty.");
 end Watertank_Drainage;
+
 
 -- 1. SYNTAX 
 --    It begins with the keyword 'while', followed by a Boolean condition 
