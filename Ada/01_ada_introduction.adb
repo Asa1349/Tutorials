@@ -59,7 +59,14 @@ begin
 
 end Ada_Introduction;
 
-
+-- There are several noteworthy things in the above program:
+--     • A subprogram in Ada can be either a procedure or a function. 
+--       A procedure, as illustrated above, does not return a value when called.
+--       Procedures are similar to functions in C or C++ that return void.
+--     • with is used to reference external modules that are needed in the procedure. 
+--       This is similar to import in various languages or roughly similar to #include in C and C++.
+--     • As you already see, Comments start with -- and go to the end of the line. 
+--       There is no multi-line comment.
 
 -------------------------------------------------------------------------------
 -- ADA CONCEPTS: STRONG TYPING & RANGES
